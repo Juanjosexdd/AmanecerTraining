@@ -34,6 +34,7 @@
         cursor: pointer;
       }
     </style>
+    
 @stop
 
 @section('js')
