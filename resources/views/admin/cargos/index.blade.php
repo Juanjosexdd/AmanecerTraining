@@ -7,22 +7,19 @@
 @stop
 
 @section('content')
-<div class="row">
     <div class="col-md-12">
-      <div class="card card-orange elevation-4 card-outline">
-        <div class="card-header">
-          <h3 class="card-title flex-">
-            <i class="icon fas fa-mug-hot text-xl text-orange"> Entrenamiento</i>
-            
-          </h3>
+        <div class="card card-orange elevation-4 card-outline">
+            <div class="card-header">
+                <h3 class="card-title flex-">
+                    <i class="icon fas fa-mug-hot text-xl text-orange"> Lista de cargos</i>
+                </h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                @livewire('cargos')
+            </div>
         </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-          
-        </div>
-      </div>
     </div>
-</div>
     
 @stop
 

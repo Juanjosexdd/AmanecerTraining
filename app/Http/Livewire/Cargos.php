@@ -2,48 +2,91 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Cargo;
 use Livewire\Component;
+use Livewire\WithPagination;
+use App\Models\Cargo;
 
 class Cargos extends Component
 {
-    public $cargo,$name, $description;
+    use WithPagination;
 
-    protected $rules = [
-        'name' => 'required|min:6'
-    ];
+	protected $paginationTheme = 'bootstrap';
+    public $selected_id, $search, $name;
+    public $updateMode = false;
 
     public function render()
     {
-        $cargos = Cargo::all();
-        return view('livewire.cargos',compact('cargos'));
+        $cargos = Cargo::where('name', 'LIKE', '%' . $this->search . '%')
+            ->latest('id')
+            ->paginate(5);
+            
+        return view('livewire.cargos.view', compact('cargos'));
+    }
+	
+    public function cancel()
+    {
+        $this->resetInput();
+        $this->updateMode = false;
+    }
+	
+    private function resetInput()
+    {		
+		$this->name = null;
     }
 
     public function store()
     {
-        $this->validate();
-
-        Cargo::create([
-            'name' => $this->name,
-            'description' => $this->description,
+        $this->validate([
+		'name' => 'required',
         ]);
 
-        $this->reset('name','description');
+        Cargo::create([ 
+			'name' => $this-> name
+        ]);
+        
+        $this->resetInput();
+		$this->emit('closeModal');
+		session()->flash('message', 'Cargo creado con exito.');
+    }
+
+    public function edit($id)
+    {
+        $record = Cargo::findOrFail($id);
+
+        $this->selected_id = $id; 
+		$this->name = $record-> name;
+		
+        $this->updateMode = true;
     }
 
     public function update()
     {
-        $this->validate();
+        $this->validate([
+		'name' => 'required',
+        ]);
 
-        $this->cargo->update();
-        $this->resetInput();
+        if ($this->selected_id) {
+			$record = Cargo::find($this->selected_id);
+            $record->update([ 
+			'name' => $this-> name
+            ]);
+
+            $this->resetInput();
+            $this->updateMode = false;
+			session()->flash('message', 'Cargo actualizado con exito!.');
+        }
     }
 
-    public function destroy(Cargo $cargo)
+    public function destroy($id)
     {
-        $cargo->delete();
+        if ($id) {
+            $record = Cargo::where('id', $id);
+            $record->delete();
+        }
+    }
 
-        $this->reset('name');
-
+    public function limpiar_page()
+    {
+        $this->reset('page');
     }
 }

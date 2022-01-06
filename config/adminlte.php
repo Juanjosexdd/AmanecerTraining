@@ -229,22 +229,23 @@ return [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
+        ['header' => 'ENTRENAMIENTO'],
         [
-            'text'        => 'Requerimientos',
-            'url'         => '#',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text'    => 'FUNCIONES',
+            'icon'    => 'fas fa-fw fa-users-cog',
+            'submenu' => [
+                [
+                    'text' => 'Cargos',
+                    'icon'    => 'fas fa-fw fa-users',
+                    'route'  => 'admin.cargos.index',
+                    'active' => ['admin/cargos*'],
+                ],
+                [
+                    'text' => 'Requerimientos',
+                    'icon'    => 'fas fa-fw fa-users',
+                    'url'  => '#',
+                ],
+            ],
         ],
         ['header' => 'CONFIGURACION DE USUARIOS'],
         [
