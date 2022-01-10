@@ -18,7 +18,7 @@
 							<input wire:keydown='limpiar_page' wire:model='search' type="text" class="ml-4 form-control" name="search" id="search" placeholder="Buscar cargo">
 						</div>
 						<div class="btn btn-sm  bg-orange " data-toggle="modal" data-target="#exampleModal">
-						<i class="fa fa-plus text-white"> Agregar cargo</i>  
+						<i class="fa fa-plus text-white"></i>  
 						</div>
 					</div>
 				</div>
@@ -34,13 +34,13 @@
 										<table class="min-w-full">
 											<thead class="bg-gray-100 dark:bg-gray-700">
 												<tr>
-													<th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+													<th colspan="1" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
 														#
 													</th>
 													<th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
 														Cargo
 													</th>
-													<th  colspan="2" class="relative py-3 px-6">
+													<th colspan="2" class="relative py-3 px-6">
 														<span class="sr-only">Acciónes</span>
 													</th>
 												</tr>
@@ -49,15 +49,16 @@
 												@foreach($cargos as $cargo)
 												
 													<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-600">
-														<td class="py-3 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+														<td width="5px" class="py-3 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
 															{{ $loop->iteration }}
 														</td>
-														<td class="py-3 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+														<td  class="py-3 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
 															{{ $cargo->name }}
 														</td>
-														<td class=" text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-end btn-group">
-															<a data-toggle="modal" data-target="#updateModal" class=" text-gray-500  cursor-pointer py-3 px-4" wire:click="edit({{$cargo->id}})"><i class="fa fa-edit"></i> Editar </a>							 
-															<a class="text-gray-500 cursor-pointer hover:text-red-500  py-3 px-4" onclick="confirm('Desea Eliminar el cargo {{$cargo->name}}? \nAl borrarlo no podrá recuperarlo!')||event.stopImmediatePropagation()" wire:click="destroy({{$cargo->id}})"><i class="fa fa-trash"></i> Borrar </a> 
+														<td width="8px" class=" text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-end btn-group">
+															<a data-toggle="modal" data-target="#updateModal" class=" text-gray-500  cursor-pointer py-3 px-1" wire:click="edit({{$cargo->id}})"><i class="fa fa-edit"></i> </a>
+																						 
+															<a class="text-gray-500 cursor-pointer hover:text-red-500  py-3 px-1" onclick="confirm('Desea Eliminar el cargo {{$cargo->name}}? \nAl borrarlo no podrá recuperarlo!')||event.stopImmediatePropagation()" wire:click="destroy({{$cargo->id}})"><i class="fa fa-trash"></i> </a> 
 														</td>
 													</tr>
 												@endforeach

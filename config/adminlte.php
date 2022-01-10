@@ -241,9 +241,10 @@ return [
                     'active' => ['admin/cargos*'],
                 ],
                 [
-                    'text' => 'Requerimientos',
+                    'text' => 'Areas',
                     'icon'    => 'fas fa-fw fa-users',
-                    'url'  => '#',
+                    'route'  => 'admin.areas.index',
+                    'active' => ['admin/areas*'],
                 ],
             ],
         ],

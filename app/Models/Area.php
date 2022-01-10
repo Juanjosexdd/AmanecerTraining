@@ -19,5 +19,5 @@ class Area extends Model
     {
         return $this->belongsTo(Cargo::class);
     }
-
+    
 }
